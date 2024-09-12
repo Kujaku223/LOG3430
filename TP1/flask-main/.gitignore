@@ -5,6 +5,5 @@ venv*/
 __pycache__/
 dist/
 .coverage*
-htmlReport4/
 .tox/
 docs/_build/
