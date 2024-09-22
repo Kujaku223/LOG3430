@@ -76,6 +76,12 @@ def test_blueprint_specific_user_error_handling(app, client):
     assert client.get("/decorator").data == b"boom"
     assert client.get("/function").data == b"bam"
 
+def test_errors_blueprints(app, client):
+    bluePrint = flask.Blueprint("error_openning_ressources", __name__)
+    try:
+        bluePrint.open_resource("static/index.html","not a mod")
+    except Exception as e:
+       assert  e.args[0] == "Resources can only be opened for reading."
 
 def test_blueprint_app_error_handling(app, client):
     errors = flask.Blueprint("errors", __name__)

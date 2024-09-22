@@ -349,15 +349,6 @@ def test_open_resource(mode):
     with app.open_resource("static/index.html", mode) as f:
         assert "<h1>Hello World!</h1>" in str(f.read())
 
-@pytest.mark.parametrize("mode", ("not a mod",))
-def test_raise_error_in_open_ressource(mode):
-    app = flask.Flask(__name__)
-    try:
-        with app.open_resource("static/index.html", mode) as f:
-            assert False
-    except Exception as e :
-        assert e.args[0] == "Resources can only be opened for reading."
-
 @pytest.mark.parametrize("mode", ("w", "x", "a", "r+"))
 def test_open_resource_exceptions(mode):
     app = flask.Flask(__name__)
