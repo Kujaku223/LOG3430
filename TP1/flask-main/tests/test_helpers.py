@@ -1,5 +1,6 @@
 import io
 import os
+from datetime import timedelta
 
 import pytest
 import werkzeug.exceptions
@@ -88,6 +89,12 @@ class TestSendfile:
             rv = flask.send_file("static/index.html")
             assert rv.cache_control.max_age == 10
             rv.close()
+
+    def test_static_file_with_time_delta(self, app, req_ctx):
+        flask.current_app.config["SEND_FILE_MAX_AGE_DEFAULT"] = timedelta(0)
+        rv = flask.send_file("static/index.html")
+        assert rv.status_code == 200
+        rv.close()
 
     def test_send_from_directory(self, app, req_ctx):
         app.root_path = os.path.join(
