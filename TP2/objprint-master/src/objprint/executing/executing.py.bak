@@ -1158,7 +1158,7 @@ lock = RLock()
 def statement_containing_node(node):
     # type: (ast.AST) -> EnhancedAST
     while not isinstance(node, ast.stmt):
-        node = None
+        node = cast(EnhancedAST, node).parent
     return cast(EnhancedAST, node)
 
 
