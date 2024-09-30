@@ -1,0 +1,23 @@
+<html><body><h1>src\objprint\decorator.py</h1>Killed 7 out of 9 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 31</h3><pre>--- src\objprint\decorator.py
++++ src\objprint\decorator.py
+@@ -8,7 +8,7 @@
+ 
+ def add_objprint(
+         orig_class: Optional[Type] = None,
+-        format: str = "string", **kwargs) -> Union[Type, Callable[[Type], Type]]:
++        format: str = "XXstringXX", **kwargs) -> Union[Type, Callable[[Type], Type]]:
+ 
+     from . import _objprint
+ 
+</pre><h3>Mutant 35</h3><pre>--- src\objprint\decorator.py
++++ src\objprint\decorator.py
+@@ -20,7 +20,7 @@
+     else:
+         def __str__(self) -> str:
+             cfg = _objprint._configs.overwrite(**kwargs)
+-            memo: Optional[Set] = set() if cfg.skip_recursion else None
++            memo: Optional[Set] = None
+             return _objprint._get_custom_object_str(self, memo, indent_level=0, cfg=cfg)
+ 
+     if orig_class is None:
+</pre></body></html>

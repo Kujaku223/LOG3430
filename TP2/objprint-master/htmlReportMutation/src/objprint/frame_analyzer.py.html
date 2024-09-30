@@ -1,0 +1,231 @@
+<html><body><h1>src\objprint\frame_analyzer.py</h1>Killed 65 out of 86 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 47</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -20,7 +20,7 @@
+         func_call_io = io.StringIO(func_call_str)
+         depth = 0
+         args = []
+-        curr_arg = ""
++        curr_arg = "XXXX"
+         last_pos = (0, 0)
+         for token in tokenize.generate_tokens(func_call_io.readline):
+             if depth == 0 and token.string == "(":
+</pre><h3>Mutant 49</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -21,7 +21,7 @@
+         depth = 0
+         args = []
+         curr_arg = ""
+-        last_pos = (0, 0)
++        last_pos = (1, 0)
+         for token in tokenize.generate_tokens(func_call_io.readline):
+             if depth == 0 and token.string == "(":
+                 depth = 1
+</pre><h3>Mutant 50</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -21,7 +21,7 @@
+         depth = 0
+         args = []
+         curr_arg = ""
+-        last_pos = (0, 0)
++        last_pos = (0, 1)
+         for token in tokenize.generate_tokens(func_call_io.readline):
+             if depth == 0 and token.string == "(":
+                 depth = 1
+</pre><h3>Mutant 51</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -21,7 +21,7 @@
+         depth = 0
+         args = []
+         curr_arg = ""
+-        last_pos = (0, 0)
++        last_pos = None
+         for token in tokenize.generate_tokens(func_call_io.readline):
+             if depth == 0 and token.string == "(":
+                 depth = 1
+</pre><h3>Mutant 56</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -23,7 +23,7 @@
+         curr_arg = ""
+         last_pos = (0, 0)
+         for token in tokenize.generate_tokens(func_call_io.readline):
+-            if depth == 0 and token.string == "(":
++            if depth == 0 or token.string == "(":
+                 depth = 1
+             elif depth == 1 and token.string == ")":
+                 args.append(curr_arg.strip())
+</pre><h3>Mutant 59</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -25,7 +25,7 @@
+         for token in tokenize.generate_tokens(func_call_io.readline):
+             if depth == 0 and token.string == "(":
+                 depth = 1
+-            elif depth == 1 and token.string == ")":
++            elif depth != 1 and token.string == ")":
+                 args.append(curr_arg.strip())
+                 break
+             elif depth == 1 and token.string == ",":
+</pre><h3>Mutant 60</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -25,7 +25,7 @@
+         for token in tokenize.generate_tokens(func_call_io.readline):
+             if depth == 0 and token.string == "(":
+                 depth = 1
+-            elif depth == 1 and token.string == ")":
++            elif depth == 2 and token.string == ")":
+                 args.append(curr_arg.strip())
+                 break
+             elif depth == 1 and token.string == ",":
+</pre><h3>Mutant 62</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -25,7 +25,7 @@
+         for token in tokenize.generate_tokens(func_call_io.readline):
+             if depth == 0 and token.string == "(":
+                 depth = 1
+-            elif depth == 1 and token.string == ")":
++            elif depth == 1 and token.string == "XX)XX":
+                 args.append(curr_arg.strip())
+                 break
+             elif depth == 1 and token.string == ",":
+</pre><h3>Mutant 64</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -27,7 +27,7 @@
+                 depth = 1
+             elif depth == 1 and token.string == ")":
+                 args.append(curr_arg.strip())
+-                break
++                continue
+             elif depth == 1 and token.string == ",":
+                 args.append(curr_arg.strip())
+                 curr_arg = ""
+</pre><h3>Mutant 70</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -30,7 +30,7 @@
+                 break
+             elif depth == 1 and token.string == ",":
+                 args.append(curr_arg.strip())
+-                curr_arg = ""
++                curr_arg = "XXXX"
+             elif depth >= 1:
+                 if token.string in "([{":
+                     depth += 1
+</pre><h3>Mutant 75</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -32,7 +32,7 @@
+                 args.append(curr_arg.strip())
+                 curr_arg = ""
+             elif depth >= 1:
+-                if token.string in "([{":
++                if token.string in "XX([{XX":
+                     depth += 1
+                 elif token.string in ")]}":
+                     depth -= 1
+</pre><h3>Mutant 80</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -34,7 +34,7 @@
+             elif depth >= 1:
+                 if token.string in "([{":
+                     depth += 1
+-                elif token.string in ")]}":
++                elif token.string in "XX)]}XX":
+                     depth -= 1
+                 if depth >= 1 and token.type != tokenize.NL:
+                     if token.start[0] != last_pos[0] or token.start[1] - last_pos[1] > 0:
+</pre><h3>Mutant 81</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -35,7 +35,7 @@
+                 if token.string in "([{":
+                     depth += 1
+                 elif token.string in ")]}":
+-                    depth -= 1
++                    depth = 1
+                 if depth >= 1 and token.type != tokenize.NL:
+                     if token.start[0] != last_pos[0] or token.start[1] - last_pos[1] > 0:
+                         curr_arg += f" {token.string}"
+</pre><h3>Mutant 87</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -36,7 +36,7 @@
+                     depth += 1
+                 elif token.string in ")]}":
+                     depth -= 1
+-                if depth >= 1 and token.type != tokenize.NL:
++                if depth >= 1 or token.type != tokenize.NL:
+                     if token.start[0] != last_pos[0] or token.start[1] - last_pos[1] > 0:
+                         curr_arg += f" {token.string}"
+                     else:
+</pre><h3>Mutant 109</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -60,7 +60,7 @@
+ 
+     def return_object(self, frame: Optional[FrameType]) -> bool:
+         if frame is None:
+-            return True
++            return False
+         current_frame: Optional[FrameType] = frame
+         while current_frame:
+             filename = current_frame.f_code.co_filename
+</pre><h3>Mutant 113</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -64,7 +64,7 @@
+         current_frame: Optional[FrameType] = frame
+         while current_frame:
+             filename = current_frame.f_code.co_filename
+-            if filename in ["<stdin>", "<console>"]:
++            if filename in ["XX<stdin>XX", "<console>"]:
+                 return False
+             current_frame = current_frame.f_back
+ 
+</pre><h3>Mutant 116</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -66,7 +66,7 @@
+             filename = current_frame.f_code.co_filename
+             if filename in ["<stdin>", "<console>"]:
+                 return False
+-            current_frame = current_frame.f_back
++            current_frame = None
+ 
+         node: Optional[ast.AST] = Source.executing(frame).node
+         if node is None:
+</pre><h3>Mutant 117</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -68,7 +68,7 @@
+                 return False
+             current_frame = current_frame.f_back
+ 
+-        node: Optional[ast.AST] = Source.executing(frame).node
++        node: Optional[ast.AST] = None
+         if node is None:
+             return True
+         lineno = inspect.getlineno(frame)
+</pre><h3>Mutant 118</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -69,7 +69,7 @@
+             current_frame = current_frame.f_back
+ 
+         node: Optional[ast.AST] = Source.executing(frame).node
+-        if node is None:
++        if node is not None:
+             return True
+         lineno = inspect.getlineno(frame)
+         statement_node = Source.for_frame(frame).statements_at_line(lineno)
+</pre><h3>Mutant 120</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -71,7 +71,7 @@
+         node: Optional[ast.AST] = Source.executing(frame).node
+         if node is None:
+             return True
+-        lineno = inspect.getlineno(frame)
++        lineno = None
+         statement_node = Source.for_frame(frame).statements_at_line(lineno)
+         for stmt in statement_node:
+             if isinstance(stmt, ast.Expr) and node == stmt.value:
+</pre><h3>Mutant 124</h3><pre>--- src\objprint\frame_analyzer.py
++++ src\objprint\frame_analyzer.py
+@@ -75,6 +75,6 @@
+         statement_node = Source.for_frame(frame).statements_at_line(lineno)
+         for stmt in statement_node:
+             if isinstance(stmt, ast.Expr) and node == stmt.value:
+-                return False
++                return True
+         return True
+ 
+</pre></body></html>

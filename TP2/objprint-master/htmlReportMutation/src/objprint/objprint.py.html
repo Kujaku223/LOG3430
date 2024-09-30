@@ -1,0 +1,606 @@
+<html><body><h1>src\objprint\objprint.py</h1>Killed 174 out of 229 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 126</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -14,7 +14,7 @@
+ from .frame_analyzer import FrameAnalyzer
+ 
+ 
+-SourceLine = TypeVar("SourceLine", str, List[str])
++SourceLine = TypeVar("XXSourceLineXX", str, List[str])
+ 
+ 
+ class _PrintConfig:
+</pre><h3>Mutant 127</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -14,7 +14,7 @@
+ from .frame_analyzer import FrameAnalyzer
+ 
+ 
+-SourceLine = TypeVar("SourceLine", str, List[str])
++SourceLine = None
+ 
+ 
+ class _PrintConfig:
+</pre><h3>Mutant 128</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -18,7 +18,7 @@
+ 
+ 
+ class _PrintConfig:
+-    enable: bool = True
++    enable: bool = False
+     indent: int = 2
+     depth: int = 100
+     width: int = 80
+</pre><h3>Mutant 130</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -19,7 +19,7 @@
+ 
+ class _PrintConfig:
+     enable: bool = True
+-    indent: int = 2
++    indent: int = 3
+     depth: int = 100
+     width: int = 80
+     color: bool = True
+</pre><h3>Mutant 132</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -20,7 +20,7 @@
+ class _PrintConfig:
+     enable: bool = True
+     indent: int = 2
+-    depth: int = 100
++    depth: int = 101
+     width: int = 80
+     color: bool = True
+     label: List[str] = []
+</pre><h3>Mutant 134</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -21,7 +21,7 @@
+     enable: bool = True
+     indent: int = 2
+     depth: int = 100
+-    width: int = 80
++    width: int = 81
+     color: bool = True
+     label: List[str] = []
+     elements: int = -1
+</pre><h3>Mutant 136</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -22,7 +22,7 @@
+     indent: int = 2
+     depth: int = 100
+     width: int = 80
+-    color: bool = True
++    color: bool = False
+     label: List[str] = []
+     elements: int = -1
+     attr_pattern: str = r"(?!_).*"
+</pre><h3>Mutant 150</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -30,7 +30,7 @@
+     include: List[str] = []
+     line_number: bool = False
+     arg_name: bool = False
+-    print_methods: bool = False
++    print_methods: bool = True
+     skip_recursion: bool = True
+     honor_existing: bool = True
+ 
+</pre><h3>Mutant 156</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -40,7 +40,7 @@
+                 if isinstance(val, type(getattr(self, key))):
+                     setattr(self, key, val)
+                 else:
+-                    raise TypeError(f"Wrong type for {key} - {val}")
++                    raise TypeError(f"XXWrong type for {key} - {val}XX")
+             else:
+                 raise ValueError(f"{key} is not configurable")
+ 
+</pre><h3>Mutant 157</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -42,7 +42,7 @@
+                 else:
+                     raise TypeError(f"Wrong type for {key} - {val}")
+             else:
+-                raise ValueError(f"{key} is not configurable")
++                raise ValueError(f"XX{key} is not configurableXX")
+ 
+     def set(self, **kwargs) -> None:
+         for key, val in kwargs.items():
+</pre><h3>Mutant 158</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -50,7 +50,7 @@
+                 if isinstance(val, type(getattr(_PrintConfig, key))):
+                     setattr(_PrintConfig, key, val)
+                 else:
+-                    raise TypeError(f"Wrong type for {key} - {val}")
++                    raise TypeError(f"XXWrong type for {key} - {val}XX")
+             else:
+                 raise ValueError(f"{key} is not configurable")
+ 
+</pre><h3>Mutant 159</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -52,7 +52,7 @@
+                 else:
+                     raise TypeError(f"Wrong type for {key} - {val}")
+             else:
+-                raise ValueError(f"{key} is not configurable")
++                raise ValueError(f"XX{key} is not configurableXX")
+ 
+     def overwrite(self, **kwargs) -> "_PrintConfig":
+         ret = _PrintConfig(**kwargs)
+</pre><h3>Mutant 161</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -60,7 +60,7 @@
+ 
+ 
+ class ObjPrint:
+-    FormatterInfo = namedtuple('FormatterInfo', ['formatter', 'inherit'])
++    FormatterInfo = namedtuple('XXFormatterInfoXX', ['formatter', 'inherit'])
+ 
+     def __init__(self):
+         self._configs = _PrintConfig()
+</pre><h3>Mutant 169</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -69,7 +69,7 @@
+             list: "[]",
+             tuple: "()",
+             dict: "{}",
+-            set: "{}"
++            set: "XX{}XX"
+         }
+         self._sys_print = print
+         self.frame_analyzer = FrameAnalyzer()
+</pre><h3>Mutant 174</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -75,7 +75,7 @@
+         self.frame_analyzer = FrameAnalyzer()
+         self.type_formatter = {}
+ 
+-    def __call__(self, *objs: Any, file: Any = None, format: str = "string", **kwargs) -> Any:
++    def __call__(self, *objs: Any, file: Any = None, format: str = "XXstringXX", **kwargs) -> Any:
+         cfg = self._configs.overwrite(**kwargs)
+         if cfg.enable:
+             # if inspect.currentframe() returns None, set call_frame to None
+</pre><h3>Mutant 182</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -94,7 +94,7 @@
+             if cfg.arg_name:
+                 args = self.frame_analyzer.get_args(call_frame)
+                 if args is None:
+-                    args = ["Unknown Arg" for _ in range(len(objs))]
++                    args = ["XXUnknown ArgXX" for _ in range(len(objs))]
+                 if cfg.color:
+                     args = [set_color(f"{arg}:", COLOR.RED) for arg in args]
+                 else:
+</pre><h3>Mutant 184</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -96,7 +96,7 @@
+                 if args is None:
+                     args = ["Unknown Arg" for _ in range(len(objs))]
+                 if cfg.color:
+-                    args = [set_color(f"{arg}:", COLOR.RED) for arg in args]
++                    args = [set_color(f"XX{arg}:XX", COLOR.RED) for arg in args]
+                 else:
+                     args = [f"{arg}:" for arg in args]
+ 
+</pre><h3>Mutant 186</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -98,7 +98,7 @@
+                 if cfg.color:
+                     args = [set_color(f"{arg}:", COLOR.RED) for arg in args]
+                 else:
+-                    args = [f"{arg}:" for arg in args]
++                    args = [f"XX{arg}:XX" for arg in args]
+ 
+             if format == "json":
+                 if cfg.arg_name:
+</pre><h3>Mutant 196</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -123,7 +123,7 @@
+             else:
+                 return None
+ 
+-        return objs[0] if len(objs) == 1 else objs
++        return objs[0] if len(objs) != 1 else objs
+ 
+     def objstr(self, obj: Any, **kwargs) -> str:
+         # If no color option is specified, don't use color
+</pre><h3>Mutant 197</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -123,7 +123,7 @@
+             else:
+                 return None
+ 
+-        return objs[0] if len(objs) == 1 else objs
++        return objs[0] if len(objs) == 2 else objs
+ 
+     def objstr(self, obj: Any, **kwargs) -> str:
+         # If no color option is specified, don't use color
+</pre><h3>Mutant 208</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -139,7 +139,7 @@
+             obj_type = type(obj)
+             for cls in obj_type.__mro__:
+                 if cls in self.type_formatter and (
+-                    cls == obj_type or self.type_formatter[cls].inherit
++                    cls != obj_type or self.type_formatter[cls].inherit
+                 ):
+                     return self.type_formatter[cls].formatter(obj)
+ 
+</pre><h3>Mutant 213</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -146,7 +146,7 @@
+         # If it's builtin type, return it directly
+         if isinstance(obj, str):
+             return f"'{obj}'"
+-        elif isinstance(obj, (int, float)) or obj is None:
++        elif isinstance(obj, (int, float)) and obj is None:
+             return str(obj)
+         elif isinstance(obj, FunctionType):
+             return f"<function {obj.__name__}>"
+</pre><h3>Mutant 224</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -161,7 +161,7 @@
+             memo.add(id(obj))
+ 
+         if isinstance(obj, (list, tuple, set)):
+-            elems = (f"{self._objstr(val, memo, indent_level + 1, cfg)}" for val in obj)
++            elems = (f"{self._objstr(val, memo, indent_level - 1, cfg)}" for val in obj)
+         elif isinstance(obj, dict):
+             items = [(key, val) for key, val in obj.items()]
+             try:
+</pre><h3>Mutant 225</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -161,7 +161,7 @@
+             memo.add(id(obj))
+ 
+         if isinstance(obj, (list, tuple, set)):
+-            elems = (f"{self._objstr(val, memo, indent_level + 1, cfg)}" for val in obj)
++            elems = (f"{self._objstr(val, memo, indent_level + 2, cfg)}" for val in obj)
+         elif isinstance(obj, dict):
+             items = [(key, val) for key, val in obj.items()]
+             try:
+</pre><h3>Mutant 230</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -169,7 +169,7 @@
+             except TypeError:
+                 pass
+             elems = (
+-                f"{self._objstr(key, None, indent_level + 1, cfg)}: {self._objstr(val, memo, indent_level + 1, cfg)}"
++                f"{self._objstr(key, None, indent_level - 1, cfg)}: {self._objstr(val, memo, indent_level + 1, cfg)}"
+                 for key, val in items
+             )
+         else:
+</pre><h3>Mutant 231</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -169,7 +169,7 @@
+             except TypeError:
+                 pass
+             elems = (
+-                f"{self._objstr(key, None, indent_level + 1, cfg)}: {self._objstr(val, memo, indent_level + 1, cfg)}"
++                f"{self._objstr(key, None, indent_level + 2, cfg)}: {self._objstr(val, memo, indent_level + 1, cfg)}"
+                 for key, val in items
+             )
+         else:
+</pre><h3>Mutant 232</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -169,7 +169,7 @@
+             except TypeError:
+                 pass
+             elems = (
+-                f"{self._objstr(key, None, indent_level + 1, cfg)}: {self._objstr(val, memo, indent_level + 1, cfg)}"
++                f"{self._objstr(key, None, indent_level + 1, cfg)}: {self._objstr(val, memo, indent_level - 1, cfg)}"
+                 for key, val in items
+             )
+         else:
+</pre><h3>Mutant 233</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -169,7 +169,7 @@
+             except TypeError:
+                 pass
+             elems = (
+-                f"{self._objstr(key, None, indent_level + 1, cfg)}: {self._objstr(val, memo, indent_level + 1, cfg)}"
++                f"{self._objstr(key, None, indent_level + 1, cfg)}: {self._objstr(val, memo, indent_level + 2, cfg)}"
+                 for key, val in items
+             )
+         else:
+</pre><h3>Mutant 241</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -180,7 +180,7 @@
+                     (obj.__class__.__str__ is not object.__str__ or obj.__class__.__repr__ is not object.__repr__):
+                 # Make sure we indent properly
+                 s = str(obj)
+-                lines = s.split("\n")
++                lines = s.split("XX\nXX")
+                 lines[1:] = [self.add_indent(line, indent_level, cfg) for line in lines[1:]]
+                 return "\n".join(lines)
+             return self._get_custom_object_str(obj, memo, indent_level, cfg)
+</pre><h3>Mutant 250</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -198,7 +198,7 @@
+             return obj
+ 
+         if id(obj) in memo:
+-            raise ValueError("Can't jsonify a recursive object")
++            raise ValueError("XXCan't jsonify a recursive objectXX")
+ 
+         memo.add(id(obj))
+ 
+</pre><h3>Mutant 255</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -221,7 +221,7 @@
+ 
+         def _get_method_line(attr: str) -> str:
+             if cfg.color:
+-                return f"{set_color('def', COLOR.MAGENTA)} "\
++                return f"{set_color('XXdefXX', COLOR.MAGENTA)} "\
+                     f"{set_color(attr, COLOR.GREEN)}{inspect.signature(getattr(obj, attr))}"
+             else:
+                 return f"def {attr}{inspect.signature(getattr(obj, attr))}"
+</pre><h3>Mutant 256</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -221,7 +221,7 @@
+ 
+         def _get_method_line(attr: str) -> str:
+             if cfg.color:
+-                return f"{set_color('def', COLOR.MAGENTA)} "\
++                return f"XX{set_color('def', COLOR.MAGENTA)} XX"\
+                     f"{set_color(attr, COLOR.GREEN)}{inspect.signature(getattr(obj, attr))}"
+             else:
+                 return f"def {attr}{inspect.signature(getattr(obj, attr))}"
+</pre><h3>Mutant 257</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -222,7 +222,7 @@
+         def _get_method_line(attr: str) -> str:
+             if cfg.color:
+                 return f"{set_color('def', COLOR.MAGENTA)} "\
+-                    f"{set_color(attr, COLOR.GREEN)}{inspect.signature(getattr(obj, attr))}"
++                    f"XX{set_color(attr, COLOR.GREEN)}{inspect.signature(getattr(obj, attr))}XX"
+             else:
+                 return f"def {attr}{inspect.signature(getattr(obj, attr))}"
+ 
+</pre><h3>Mutant 262</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -228,7 +228,7 @@
+ 
+         def _get_line(key: str) -> str:
+             val = self._objstr(getattr(obj, key), memo, indent_level + 1, cfg)
+-            if cfg.label and any(re.fullmatch(pattern, key) is not None for pattern in cfg.label):
++            if cfg.label and any(re.fullmatch(pattern, key) is  None for pattern in cfg.label):
+                 return set_color(f".{key} = {val}", COLOR.YELLOW)
+             elif cfg.color:
+                 return f"{set_color('.' + key, COLOR.GREEN)} = {val}"
+</pre><h3>Mutant 263</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -228,7 +228,7 @@
+ 
+         def _get_line(key: str) -> str:
+             val = self._objstr(getattr(obj, key), memo, indent_level + 1, cfg)
+-            if cfg.label and any(re.fullmatch(pattern, key) is not None for pattern in cfg.label):
++            if cfg.label or any(re.fullmatch(pattern, key) is not None for pattern in cfg.label):
+                 return set_color(f".{key} = {val}", COLOR.YELLOW)
+             elif cfg.color:
+                 return f"{set_color('.' + key, COLOR.GREEN)} = {val}"
+</pre><h3>Mutant 264</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -229,7 +229,7 @@
+         def _get_line(key: str) -> str:
+             val = self._objstr(getattr(obj, key), memo, indent_level + 1, cfg)
+             if cfg.label and any(re.fullmatch(pattern, key) is not None for pattern in cfg.label):
+-                return set_color(f".{key} = {val}", COLOR.YELLOW)
++                return set_color(f"XX.{key} = {val}XX", COLOR.YELLOW)
+             elif cfg.color:
+                 return f"{set_color('.' + key, COLOR.GREEN)} = {val}"
+             else:
+</pre><h3>Mutant 265</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -231,7 +231,7 @@
+             if cfg.label and any(re.fullmatch(pattern, key) is not None for pattern in cfg.label):
+                 return set_color(f".{key} = {val}", COLOR.YELLOW)
+             elif cfg.color:
+-                return f"{set_color('.' + key, COLOR.GREEN)} = {val}"
++                return f"{set_color('XX.XX' + key, COLOR.GREEN)} = {val}"
+             else:
+                 return f".{key} = {val}"
+ 
+</pre><h3>Mutant 267</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -231,7 +231,7 @@
+             if cfg.label and any(re.fullmatch(pattern, key) is not None for pattern in cfg.label):
+                 return set_color(f".{key} = {val}", COLOR.YELLOW)
+             elif cfg.color:
+-                return f"{set_color('.' + key, COLOR.GREEN)} = {val}"
++                return f"XX{set_color('.' + key, COLOR.GREEN)} = {val}XX"
+             else:
+                 return f".{key} = {val}"
+ 
+</pre><h3>Mutant 281</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -266,7 +266,7 @@
+ 
+     def _get_line_number_str(self, curr_frame: Optional[FrameType], cfg: _PrintConfig):
+         if curr_frame is None:
+-            return "Unknown Line Number"
++            return "XXUnknown Line NumberXX"
+         curr_code = curr_frame.f_code
+         if cfg.color:
+             return f"{set_color(curr_code.co_name, COLOR.GREEN)} ({curr_code.co_filename}:{curr_frame.f_lineno})"
+</pre><h3>Mutant 283</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -269,7 +269,7 @@
+             return "Unknown Line Number"
+         curr_code = curr_frame.f_code
+         if cfg.color:
+-            return f"{set_color(curr_code.co_name, COLOR.GREEN)} ({curr_code.co_filename}:{curr_frame.f_lineno})"
++            return f"XX{set_color(curr_code.co_name, COLOR.GREEN)} ({curr_code.co_filename}:{curr_frame.f_lineno})XX"
+         else:
+             return f"{curr_code.co_name} ({curr_code.co_filename}:{curr_frame.f_lineno})"
+ 
+</pre><h3>Mutant 284</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -271,7 +271,7 @@
+         if cfg.color:
+             return f"{set_color(curr_code.co_name, COLOR.GREEN)} ({curr_code.co_filename}:{curr_frame.f_lineno})"
+         else:
+-            return f"{curr_code.co_name} ({curr_code.co_filename}:{curr_frame.f_lineno})"
++            return f"XX{curr_code.co_name} ({curr_code.co_filename}:{curr_frame.f_lineno})XX"
+ 
+     def enable(self) -> None:
+         self.config(enable=True)
+</pre><h3>Mutant 287</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -282,7 +282,7 @@
+     def config(self, **kwargs) -> None:
+         self._configs.set(**kwargs)
+ 
+-    def install(self, name: str = "op") -> None:
++    def install(self, name: str = "XXopXX") -> None:
+         import builtins
+         builtins.__dict__[name] = self
+ 
+</pre><h3>Mutant 300</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -308,7 +308,7 @@
+             return wrapper
+ 
+         if not isinstance(obj_type, type):
+-            raise TypeError("obj_type must be a type")
++            raise TypeError("XXobj_type must be a typeXX")
+ 
+         if not callable(obj_formatter):
+             raise TypeError("obj_formatter must be a callable")
+</pre><h3>Mutant 302</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -311,7 +311,7 @@
+             raise TypeError("obj_type must be a type")
+ 
+         if not callable(obj_formatter):
+-            raise TypeError("obj_formatter must be a callable")
++            raise TypeError("XXobj_formatter must be a callableXX")
+ 
+         fmt_info = self.FormatterInfo(formatter=obj_formatter, inherit=inherit)
+         self.type_formatter[obj_type] = fmt_info
+</pre><h3>Mutant 306</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -322,7 +322,7 @@
+             self.type_formatter.clear()
+         else:
+             for obj_type in obj_types:
+-                if obj_type in self.type_formatter:
++                if obj_type not in self.type_formatter:
+                     del self.type_formatter[obj_type]
+ 
+     def get_formatter(self) -> dict:
+</pre><h3>Mutant 312</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -335,7 +335,7 @@
+             return indicator[0], indicator[1]
+         else:
+             if cfg.color:
+-                return set_color(f"<{obj_type.__name__} {hex(id(obj))}", COLOR.CYAN), set_color(">", COLOR.CYAN)
++                return set_color(f"XX<{obj_type.__name__} {hex(id(obj))}XX", COLOR.CYAN), set_color(">", COLOR.CYAN)
+             else:
+                 return f"<{obj_type.__name__} {hex(id(obj))}", ">"
+ 
+</pre><h3>Mutant 313</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -335,7 +335,7 @@
+             return indicator[0], indicator[1]
+         else:
+             if cfg.color:
+-                return set_color(f"<{obj_type.__name__} {hex(id(obj))}", COLOR.CYAN), set_color(">", COLOR.CYAN)
++                return set_color(f"<{obj_type.__name__} {hex(id(obj))}", COLOR.CYAN), set_color("XX>XX", COLOR.CYAN)
+             else:
+                 return f"<{obj_type.__name__} {hex(id(obj))}", ">"
+ 
+</pre><h3>Mutant 317</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -341,7 +341,7 @@
+ 
+     def _get_ellipsis(self, obj: Any, cfg: _PrintConfig) -> str:
+         header, footer = self._get_header_footer(obj, cfg)
+-        return f"{header} ... {footer}"
++        return f"XX{header} ... {footer}XX"
+ 
+     def _get_pack_str(
+             self,
+</pre><h3>Mutant 325</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -366,7 +366,7 @@
+                     first_elems.append(next(it))
+             except StopIteration:
+                 pass
+-            if next(it, None) is not None:
++            if next(it, None) is  None:
+                 first_elems.append("...")
+             elems = first_elems
+ 
+</pre><h3>Mutant 326</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -367,7 +367,7 @@
+             except StopIteration:
+                 pass
+             if next(it, None) is not None:
+-                first_elems.append("...")
++                first_elems.append("XX...XX")
+             elems = first_elems
+ 
+         multiline = False
+</pre><h3>Mutant 329</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -370,7 +370,7 @@
+                 first_elems.append("...")
+             elems = first_elems
+ 
+-        multiline = False
++        multiline = None
+         if len(header) > 1 and len(elems) > 0:
+             # If it's not built in, always do multiline
+             multiline = True
+</pre><h3>Mutant 331</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -371,7 +371,7 @@
+             elems = first_elems
+ 
+         multiline = False
+-        if len(header) > 1 and len(elems) > 0:
++        if len(header) > 2 and len(elems) > 0:
+             # If it's not built in, always do multiline
+             multiline = True
+         elif any(("\n" in elem for elem in elems)):
+</pre><h3>Mutant 342</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -377,7 +377,7 @@
+         elif any(("\n" in elem for elem in elems)):
+             # Has \n, need multiple mode
+             multiline = True
+-        elif cfg.width is not None and sum((len(elem) for elem in elems)) > cfg.width:
++        elif cfg.width is not None and sum((len(elem) for elem in elems)) >= cfg.width:
+             multiline = True
+ 
+         if multiline:
+</pre><h2>Suspicious</h2>Mutants that made the test suite take longer, but otherwise seemed ok<h3>Mutant 345</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -378,7 +378,7 @@
+             # Has \n, need multiple mode
+             multiline = True
+         elif cfg.width is not None and sum((len(elem) for elem in elems)) > cfg.width:
+-            multiline = True
++            multiline = None
+ 
+         if multiline:
+             s = ",\n".join(self.add_indent(elems, indent_level + 1, cfg))
+</pre><h3>Mutant 346</h3><pre>--- src\objprint\objprint.py
++++ src\objprint\objprint.py
+@@ -381,7 +381,7 @@
+             multiline = True
+ 
+         if multiline:
+-            s = ",\n".join(self.add_indent(elems, indent_level + 1, cfg))
++            s = "XX,\nXX".join(self.add_indent(elems, indent_level + 1, cfg))
+             return f"{header}\n{s}\n{self.add_indent('', indent_level, cfg)}{footer}"
+         else:
+             s = ", ".join(elems)
+</pre></body></html>

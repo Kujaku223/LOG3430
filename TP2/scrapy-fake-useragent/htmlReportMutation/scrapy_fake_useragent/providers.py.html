@@ -1,0 +1,110 @@
+<html><body><h1>scrapy_fake_useragent\providers.py</h1>Killed 15 out of 25 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 48</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -15,7 +15,7 @@
+     """
+ 
+     def __init__(self, settings):
+-        self.settings = settings
++        self.settings = None
+ 
+         # Each provider should set their own type of UA
+         self._ua_type = None
+</pre><h3>Mutant 49</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -18,7 +18,7 @@
+         self.settings = settings
+ 
+         # Each provider should set their own type of UA
+-        self._ua_type = None
++        self._ua_type = ""
+ 
+     @abstractmethod
+     def get_random_ua(self):
+</pre><h3>Mutant 50</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -20,7 +20,6 @@
+         # Each provider should set their own type of UA
+         self._ua_type = None
+ 
+-    @abstractmethod
+     def get_random_ua(self):
+         """
+         Method needs to be implemented per provider based on BaseProvider.
+</pre><h3>Mutant 52</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -33,7 +33,7 @@
+     def __init__(self, settings):
+         BaseProvider.__init__(self, settings)
+ 
+-        fixed_ua = settings.get('USER_AGENT', '')
++        fixed_ua = settings.get('USER_AGENT', 'XXXX')
+ 
+         # If the USER_AGENT setting is not set, the useragent will be empty
+         self._ua = fixed_ua or ''
+</pre><h3>Mutant 54</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -36,7 +36,7 @@
+         fixed_ua = settings.get('USER_AGENT', '')
+ 
+         # If the USER_AGENT setting is not set, the useragent will be empty
+-        self._ua = fixed_ua or ''
++        self._ua = fixed_ua or 'XXXX'
+ 
+     def get_random_ua(self):
+         return self._ua
+</pre><h3>Mutant 57</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -48,7 +48,7 @@
+     powered by the fake_useragent library.
+     """
+ 
+-    DEFAULT_UA_TYPE = 'random'
++    DEFAULT_UA_TYPE = 'XXrandomXX'
+ 
+     def __init__(self, settings):
+         BaseProvider.__init__(self, settings)
+</pre><h3>Mutant 62</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -56,7 +56,7 @@
+         self._ua_type = settings.get('FAKE_USERAGENT_RANDOM_UA_TYPE',
+                                      self.DEFAULT_UA_TYPE)
+ 
+-        fallback = settings.get('FAKEUSERAGENT_FALLBACK', '')
++        fallback = settings.get('FAKEUSERAGENT_FALLBACK', 'XXXX')
+         self._ua = fake_useragent.UserAgent(fallback=fallback)
+ 
+     def get_random_ua(self):
+</pre><h3>Mutant 68</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -79,7 +79,7 @@
+         BaseProvider.__init__(self, settings)
+ 
+         self._ua = Faker()
+-        self._ua_type = settings.get('FAKER_RANDOM_UA_TYPE',
++        self._ua_type = settings.get('XXFAKER_RANDOM_UA_TYPEXX',
+                                      self.DEFAULT_UA_TYPE)
+ 
+     def get_random_ua(self):
+</pre><h3>Mutant 70</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -86,7 +86,7 @@
+         try:
+             return getattr(self._ua, self._ua_type)()
+         except AttributeError:
+-            logger.debug("Couldn't retrieve '%s' UA type. "
++            logger.debug("XXCouldn't retrieve '%s' UA type. XX"
+                          "Using default: '%s'",
+                          self._ua_type, self.DEFAULT_UA_TYPE)
+             return getattr(self._ua, self.DEFAULT_UA_TYPE)()
+</pre><h3>Mutant 71</h3><pre>--- scrapy_fake_useragent\providers.py
++++ scrapy_fake_useragent\providers.py
+@@ -87,7 +87,7 @@
+             return getattr(self._ua, self._ua_type)()
+         except AttributeError:
+             logger.debug("Couldn't retrieve '%s' UA type. "
+-                         "Using default: '%s'",
++                         "XXUsing default: '%s'XX",
+                          self._ua_type, self.DEFAULT_UA_TYPE)
+             return getattr(self._ua, self.DEFAULT_UA_TYPE)()
+ 
+</pre></body></html>

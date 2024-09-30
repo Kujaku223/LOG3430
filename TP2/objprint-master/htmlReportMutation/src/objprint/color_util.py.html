@@ -1,0 +1,240 @@
+<html><body><h1>src\objprint\color_util.py</h1>Killed 8 out of 30 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 1</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -5,7 +5,7 @@
+ 
+ 
+ class COLOR:
+-    BLACK = '\033[30m'
++    BLACK = 'XX\033[30mXX'
+     RED = '\033[31m'
+     GREEN = '\033[32m'
+     YELLOW = '\033[33m'
+</pre><h3>Mutant 2</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -5,7 +5,7 @@
+ 
+ 
+ class COLOR:
+-    BLACK = '\033[30m'
++    BLACK = None
+     RED = '\033[31m'
+     GREEN = '\033[32m'
+     YELLOW = '\033[33m'
+</pre><h3>Mutant 3</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -6,7 +6,7 @@
+ 
+ class COLOR:
+     BLACK = '\033[30m'
+-    RED = '\033[31m'
++    RED = 'XX\033[31mXX'
+     GREEN = '\033[32m'
+     YELLOW = '\033[33m'
+     BLUE = '\033[34m'
+</pre><h3>Mutant 4</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -6,7 +6,7 @@
+ 
+ class COLOR:
+     BLACK = '\033[30m'
+-    RED = '\033[31m'
++    RED = None
+     GREEN = '\033[32m'
+     YELLOW = '\033[33m'
+     BLUE = '\033[34m'
+</pre><h3>Mutant 5</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -7,7 +7,7 @@
+ class COLOR:
+     BLACK = '\033[30m'
+     RED = '\033[31m'
+-    GREEN = '\033[32m'
++    GREEN = 'XX\033[32mXX'
+     YELLOW = '\033[33m'
+     BLUE = '\033[34m'
+     MAGENTA = '\033[35m'
+</pre><h3>Mutant 7</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -8,7 +8,7 @@
+     BLACK = '\033[30m'
+     RED = '\033[31m'
+     GREEN = '\033[32m'
+-    YELLOW = '\033[33m'
++    YELLOW = 'XX\033[33mXX'
+     BLUE = '\033[34m'
+     MAGENTA = '\033[35m'
+     CYAN = '\033[36m'
+</pre><h3>Mutant 9</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -9,7 +9,7 @@
+     RED = '\033[31m'
+     GREEN = '\033[32m'
+     YELLOW = '\033[33m'
+-    BLUE = '\033[34m'
++    BLUE = 'XX\033[34mXX'
+     MAGENTA = '\033[35m'
+     CYAN = '\033[36m'
+     WHITE = '\033[37m'
+</pre><h3>Mutant 10</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -9,7 +9,7 @@
+     RED = '\033[31m'
+     GREEN = '\033[32m'
+     YELLOW = '\033[33m'
+-    BLUE = '\033[34m'
++    BLUE = None
+     MAGENTA = '\033[35m'
+     CYAN = '\033[36m'
+     WHITE = '\033[37m'
+</pre><h3>Mutant 11</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -10,7 +10,7 @@
+     GREEN = '\033[32m'
+     YELLOW = '\033[33m'
+     BLUE = '\033[34m'
+-    MAGENTA = '\033[35m'
++    MAGENTA = 'XX\033[35mXX'
+     CYAN = '\033[36m'
+     WHITE = '\033[37m'
+     DEFAULT = '\033[39m'
+</pre><h3>Mutant 13</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -11,7 +11,7 @@
+     YELLOW = '\033[33m'
+     BLUE = '\033[34m'
+     MAGENTA = '\033[35m'
+-    CYAN = '\033[36m'
++    CYAN = 'XX\033[36mXX'
+     WHITE = '\033[37m'
+     DEFAULT = '\033[39m'
+ 
+</pre><h3>Mutant 15</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -12,7 +12,7 @@
+     BLUE = '\033[34m'
+     MAGENTA = '\033[35m'
+     CYAN = '\033[36m'
+-    WHITE = '\033[37m'
++    WHITE = 'XX\033[37mXX'
+     DEFAULT = '\033[39m'
+ 
+ 
+</pre><h3>Mutant 16</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -12,7 +12,7 @@
+     BLUE = '\033[34m'
+     MAGENTA = '\033[35m'
+     CYAN = '\033[36m'
+-    WHITE = '\033[37m'
++    WHITE = None
+     DEFAULT = '\033[39m'
+ 
+ 
+</pre><h3>Mutant 17</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -13,7 +13,7 @@
+     MAGENTA = '\033[35m'
+     CYAN = '\033[36m'
+     WHITE = '\033[37m'
+-    DEFAULT = '\033[39m'
++    DEFAULT = 'XX\033[39mXX'
+ 
+ 
+ color_support = True
+</pre><h3>Mutant 21</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -19,7 +19,7 @@
+ color_support = True
+ 
+ 
+-if sys.platform == "win32":
++if sys.platform != "win32":
+     try:
+         # https://stackoverflow.com/questions/36760127/...
+         # how-to-use-the-new-support-for-ansi-escape-sequences-in-the-windows-10-console
+</pre><h3>Mutant 22</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -19,7 +19,7 @@
+ color_support = True
+ 
+ 
+-if sys.platform == "win32":
++if sys.platform == "XXwin32XX":
+     try:
+         # https://stackoverflow.com/questions/36760127/...
+         # how-to-use-the-new-support-for-ansi-escape-sequences-in-the-windows-10-console
+</pre><h3>Mutant 24</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -25,7 +25,7 @@
+         # how-to-use-the-new-support-for-ansi-escape-sequences-in-the-windows-10-console
+         from ctypes import windll
+         kernel32 = windll.kernel32
+-        kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
++        kernel32.SetConsoleMode(kernel32.GetStdHandle(+11), 7)
+     except Exception:  # pragma: no cover
+         color_support = False
+ 
+</pre><h3>Mutant 25</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -25,7 +25,7 @@
+         # how-to-use-the-new-support-for-ansi-escape-sequences-in-the-windows-10-console
+         from ctypes import windll
+         kernel32 = windll.kernel32
+-        kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
++        kernel32.SetConsoleMode(kernel32.GetStdHandle(-12), 7)
+     except Exception:  # pragma: no cover
+         color_support = False
+ 
+</pre><h3>Mutant 26</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -25,7 +25,7 @@
+         # how-to-use-the-new-support-for-ansi-escape-sequences-in-the-windows-10-console
+         from ctypes import windll
+         kernel32 = windll.kernel32
+-        kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
++        kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 8)
+     except Exception:  # pragma: no cover
+         color_support = False
+ 
+</pre><h3>Mutant 27</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -27,7 +27,7 @@
+         kernel32 = windll.kernel32
+         kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
+     except Exception:  # pragma: no cover
+-        color_support = False
++        color_support = True
+ 
+ 
+ def set_color(s: str, color: str) -> str:
+</pre><h3>Mutant 28</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -27,7 +27,7 @@
+         kernel32 = windll.kernel32
+         kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
+     except Exception:  # pragma: no cover
+-        color_support = False
++        color_support = None
+ 
+ 
+ def set_color(s: str, color: str) -> str:
+</pre><h3>Mutant 29</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -32,6 +32,6 @@
+ 
+ def set_color(s: str, color: str) -> str:
+     if color_support:
+-        return f"{color}{s}{COLOR.DEFAULT}"
++        return f"XX{color}{s}{COLOR.DEFAULT}XX"
+     return f"{s}"  # pragma: no cover
+ 
+</pre><h3>Mutant 30</h3><pre>--- src\objprint\color_util.py
++++ src\objprint\color_util.py
+@@ -33,5 +33,5 @@
+ def set_color(s: str, color: str) -> str:
+     if color_support:
+         return f"{color}{s}{COLOR.DEFAULT}"
+-    return f"{s}"  # pragma: no cover
++    return f"XX{s}XX"  # pragma: no cover
+ 
+</pre></body></html>
