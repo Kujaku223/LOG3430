@@ -21,7 +21,9 @@ class MutationFuzzer:
         return self.mutate(seed)
 
 
-random.seed(123)
+matricule = 3452020
+random.seed(matricule)
+print("the random seed is: "+ str(matricule))
 seed = "https://www.polymtl.ca"
 mutation_fuzzer = MutationFuzzer([seed])
 

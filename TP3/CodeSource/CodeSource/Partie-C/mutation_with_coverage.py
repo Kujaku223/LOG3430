@@ -57,7 +57,7 @@ def plot(cumulative_coverage):
     plt.show()
 
 # Exemple de couverture avec MutationFuzzer à modifier pour les tâches de la Partie-C
-random.seed(123)
+random.seed(2195379)
 trials = 500
 fuzzer = MutationFuzzer(seeds=["http://www.polymtl.ca"])
 

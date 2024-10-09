@@ -17,8 +17,9 @@ class RandomFuzzer:
             for i in range(length)
         )
 
-
-random.seed(123)
+seed = 2195379
+random.seed(seed)
+print("the random seed is: "+ str(seed))
 random_fuzzer = RandomFuzzer()
 trials = 100
 for i in range(trials):
