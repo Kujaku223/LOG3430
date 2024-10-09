@@ -16,17 +16,17 @@ class RandomFuzzer:
             chr(random.randint(self.char_start, self.char_start + self.char_range))
             for i in range(length)
         )
-
-seed = 2195379
-random.seed(seed)
-print("the random seed is: "+ str(seed))
-random_fuzzer = RandomFuzzer()
-trials = 100
-for i in range(trials):
-    inp = random_fuzzer.fuzz()
-    print("trial: %s \ninput: %s" % (i, inp))
-    try:
-        test_script.crash_if_too_long(inp)
-    except ValueError:
-        traceback.print_exc()
-        break
+if __name__ == '__main__':
+    seed = 2195379
+    random.seed(seed)
+    print("the random seed is: "+ str(seed))
+    random_fuzzer = RandomFuzzer()
+    trials = 100
+    for i in range(trials):
+        inp = random_fuzzer.fuzz()
+        print("trial: %s \ninput: %s" % (i, inp))
+        try:
+            test_script.crash_if_too_long(inp)
+        except ValueError:
+            traceback.print_exc()
+            break
