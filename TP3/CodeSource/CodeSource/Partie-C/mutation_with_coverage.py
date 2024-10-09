@@ -61,8 +61,8 @@ def calculate_cumulative_coverage(input_population, function):
 #     plt.show()
 if __name__ == '__main__':
     # Exemple de couverture avec MutationFuzzer à modifier pour les tâches de la Partie-C
-    random.seed(2197269)
-    # random.seed(219537o0)
+    # random.seed(2197269)
+    random.seed(2195379)
     trials = 500
     fuzzerA = RandomFuzzer()
     fuzzerB = MutationFuzzer(seeds=["3452020"])
