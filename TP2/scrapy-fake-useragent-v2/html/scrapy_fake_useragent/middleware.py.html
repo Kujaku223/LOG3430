@@ -1,0 +1,189 @@
+<html><body><h1>scrapy_fake_useragent\middleware.py</h1>Killed 29 out of 46 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 7</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -14,7 +14,7 @@
+ class RandomUserAgentBase:
+     def __init__(self, crawler):
+         self._ua_provider = self._get_provider(crawler)
+-        self._per_proxy = crawler.settings.get('RANDOM_UA_PER_PROXY', False)
++        self._per_proxy = crawler.settings.get('XXRANDOM_UA_PER_PROXYXX', False)
+         self._proxy2ua = {}
+ 
+     def _get_provider(self, crawler):
+</pre><h3>Mutant 8</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -14,7 +14,7 @@
+ class RandomUserAgentBase:
+     def __init__(self, crawler):
+         self._ua_provider = self._get_provider(crawler)
+-        self._per_proxy = crawler.settings.get('RANDOM_UA_PER_PROXY', False)
++        self._per_proxy = crawler.settings.get('RANDOM_UA_PER_PROXY', True)
+         self._proxy2ua = {}
+ 
+     def _get_provider(self, crawler):
+</pre><h3>Mutant 9</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -14,7 +14,7 @@
+ class RandomUserAgentBase:
+     def __init__(self, crawler):
+         self._ua_provider = self._get_provider(crawler)
+-        self._per_proxy = crawler.settings.get('RANDOM_UA_PER_PROXY', False)
++        self._per_proxy = None
+         self._proxy2ua = {}
+ 
+     def _get_provider(self, crawler):
+</pre><h3>Mutant 15</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -24,7 +24,7 @@
+         if not self.providers_paths:
+             self.providers_paths = [FAKE_USERAGENT_PROVIDER_PATH]
+ 
+-        provider = None
++        provider = ""
+         # We try to use any of the user agent providers specified in the config (priority order)
+         for provider_path in self.providers_paths:
+             try:
+</pre><h3>Mutant 17</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -29,7 +29,7 @@
+         for provider_path in self.providers_paths:
+             try:
+                 provider = load_object(provider_path)(crawler.settings)
+-                logger.debug("Loaded User-Agent provider: %s", provider_path)
++                logger.debug("XXLoaded User-Agent provider: %sXX", provider_path)
+                 break
+             except Exception:  # Provider can throw anything
+                 logger.info('Error loading User-Agent provider: %s', provider_path)
+</pre><h3>Mutant 19</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -32,7 +32,7 @@
+                 logger.debug("Loaded User-Agent provider: %s", provider_path)
+                 break
+             except Exception:  # Provider can throw anything
+-                logger.info('Error loading User-Agent provider: %s', provider_path)
++                logger.info('XXError loading User-Agent provider: %sXX', provider_path)
+ 
+         if not provider:
+             # If none of them work, we use the FixedUserAgent provider:
+</pre><h3>Mutant 21</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -38,7 +38,7 @@
+             # If none of them work, we use the FixedUserAgent provider:
+             # (default provider that return a single useragent,
+             # like Scrapy does, specified in USER_AGENT setting)
+-            logger.info('Unable to load any of the User-Agent providers')
++            logger.info('XXUnable to load any of the User-Agent providersXX')
+             provider = load_object(FIXED_PROVIDER_PATH)(crawler.settings)
+ 
+         logger.info("Using '%s' as the User-Agent provider", type(provider))
+</pre><h3>Mutant 23</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -41,7 +41,7 @@
+             logger.info('Unable to load any of the User-Agent providers')
+             provider = load_object(FIXED_PROVIDER_PATH)(crawler.settings)
+ 
+-        logger.info("Using '%s' as the User-Agent provider", type(provider))
++        logger.info("XXUsing '%s' as the User-Agent providerXX", type(provider))
+         return provider
+ 
+ 
+</pre><h3>Mutant 25</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -55,7 +55,7 @@
+ 
+     def process_request(self, request, spider):
+         if self._per_proxy:
+-            proxy = request.meta.get('proxy')
++            proxy = request.meta.get('XXproxyXX')
+ 
+             if proxy not in self._proxy2ua:
+                 self._proxy2ua[proxy] = self._ua_provider.get_random_ua()
+</pre><h3>Mutant 26</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -55,7 +55,7 @@
+ 
+     def process_request(self, request, spider):
+         if self._per_proxy:
+-            proxy = request.meta.get('proxy')
++            proxy = None
+ 
+             if proxy not in self._proxy2ua:
+                 self._proxy2ua[proxy] = self._ua_provider.get_random_ua()
+</pre><h3>Mutant 29</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -59,7 +59,7 @@
+ 
+             if proxy not in self._proxy2ua:
+                 self._proxy2ua[proxy] = self._ua_provider.get_random_ua()
+-                logger.debug('Assign User-Agent %s to Proxy %s'
++                logger.debug('XXAssign User-Agent %s to Proxy %sXX'
+                              % (self._proxy2ua[proxy], proxy))
+ 
+             request.headers.setdefault('User-Agent', self._proxy2ua[proxy])
+</pre><h3>Mutant 34</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -81,7 +81,7 @@
+         return cls(crawler)
+ 
+     def process_response(self, request, response, spider):
+-        if request.meta.get('dont_retry', False):
++        if request.meta.get('XXdont_retryXX', False):
+             return response
+ 
+         if response.status in self.retry_http_codes:
+</pre><h3>Mutant 37</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -85,7 +85,7 @@
+             return response
+ 
+         if response.status in self.retry_http_codes:
+-            reason = response_status_message(response.status)
++            reason = None
+             request.headers['User-Agent'] = self._ua_provider.get_random_ua()
+             return self._retry(request, reason, spider) or response
+ 
+</pre><h3>Mutant 39</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -86,7 +86,7 @@
+ 
+         if response.status in self.retry_http_codes:
+             reason = response_status_message(response.status)
+-            request.headers['User-Agent'] = self._ua_provider.get_random_ua()
++            request.headers['User-Agent'] = None
+             return self._retry(request, reason, spider) or response
+ 
+         return response
+</pre><h3>Mutant 42</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -93,7 +93,7 @@
+ 
+     def process_exception(self, request, exception, spider):
+         if isinstance(exception, self.EXCEPTIONS_TO_RETRY) \
+-                and not request.meta.get('dont_retry', False):
++                and not request.meta.get('XXdont_retryXX', False):
+             request.headers['User-Agent'] = self._ua_provider.get_random_ua()
+ 
+             return self._retry(request, exception, spider)
+</pre><h3>Mutant 44</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -92,8 +92,7 @@
+         return response
+ 
+     def process_exception(self, request, exception, spider):
+-        if isinstance(exception, self.EXCEPTIONS_TO_RETRY) \
+-                and not request.meta.get('dont_retry', False):
++        if isinstance(exception, self.EXCEPTIONS_TO_RETRY) or not request.meta.get('dont_retry', False):
+             request.headers['User-Agent'] = self._ua_provider.get_random_ua()
+ 
+             return self._retry(request, exception, spider)
+</pre><h3>Mutant 46</h3><pre>--- scrapy_fake_useragent\middleware.py
++++ scrapy_fake_useragent\middleware.py
+@@ -94,7 +94,7 @@
+     def process_exception(self, request, exception, spider):
+         if isinstance(exception, self.EXCEPTIONS_TO_RETRY) \
+                 and not request.meta.get('dont_retry', False):
+-            request.headers['User-Agent'] = self._ua_provider.get_random_ua()
++            request.headers['User-Agent'] = None
+ 
+             return self._retry(request, exception, spider)
+ 
+</pre></body></html>
