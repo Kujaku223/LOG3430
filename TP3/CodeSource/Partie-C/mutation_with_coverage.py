@@ -63,7 +63,7 @@ if __name__ == '__main__':
     # Exemple de couverture avec MutationFuzzer à modifier pour les tâches de la Partie-C
     # random.seed(2197269)
     random.seed(2195379)
-    trials = 500
+    trials = 1000
     fuzzerA = RandomFuzzer()
     fuzzerB = MutationFuzzer(seeds=["3452020"])
     fuzzerC = MyFuzzer()
@@ -83,10 +83,11 @@ if __name__ == '__main__':
     plt.plot(cumulative_coverageA, label ="RandomFuzzer")
     plt.plot(cumulative_coverageB,label = "MutationFuzzer")
     plt.plot(cumulative_coverageC,label = "MyFuzzer")
-
+    print(cumulative_coverageB.pop())
+    print(cumulative_coverageC.pop())
     plt.legend()
-    plt.title('Coverage')
-    plt.xlabel('# of inputs')
+    plt.title('Cumulative Coverage')
+    plt.xlabel('Number of inputs')
     plt.ylabel('lines covered')
     plt.show()
 
