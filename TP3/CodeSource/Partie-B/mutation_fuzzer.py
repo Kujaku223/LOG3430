@@ -21,7 +21,7 @@ class MutationFuzzer:
         return self.mutate(seed)
 
 if __name__ == '__main__':
-    matricule = 3452020
+    matricule = 2195379
     random.seed(matricule)
     print("the random seed is: "+ str(matricule))
     seed = "https://www.polymtl.ca"

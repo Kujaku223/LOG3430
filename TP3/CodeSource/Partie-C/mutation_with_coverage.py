@@ -53,15 +53,8 @@ def calculate_cumulative_coverage(input_population, function):
     return cumulative_coverage
 
 
-# def plot(cumulative_coverage, label):
-#     plt.plot(cumulative_coverage, label=label)
-#     plt.title('Coverage')
-#     plt.xlabel('# of inputs')
-#     plt.ylabel('lines covered')
-#     plt.show()
 if __name__ == '__main__':
     # Exemple de couverture avec MutationFuzzer à modifier pour les tâches de la Partie-C
-    # random.seed(2197269)
     random.seed(2195379)
     trials = 1000
     fuzzerA = RandomFuzzer()
