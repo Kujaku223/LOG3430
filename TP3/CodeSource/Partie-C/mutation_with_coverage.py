@@ -1,7 +1,6 @@
 import sys
 import os
 import random
-
 import num2words
 
 import url_parser
