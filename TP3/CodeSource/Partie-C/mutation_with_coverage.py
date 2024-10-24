@@ -50,6 +50,22 @@ def calculate_cumulative_coverage(input_population, function):
         all_coverage |= coverage.coverage()
         cumulative_coverage.append(len(all_coverage))
     return cumulative_coverage
+def calculate_cumulative_coverage_with_lambda(input_population, function):
+    cumulative_coverage = []
+    all_coverage = set()
+
+    for inp in input_population:
+        coverage = Coverage()
+        coverage.start()
+        try:
+            function(*inp)
+        except Exception:
+            pass
+        coverage.stop()
+        all_coverage |= coverage.coverage()
+        cumulative_coverage.append(len(all_coverage))
+    return cumulative_coverage
+
 
 
 if __name__ == '__main__':
@@ -70,7 +86,7 @@ if __name__ == '__main__':
         input_setA, num2words.num2words)
     cumulative_coverageB = calculate_cumulative_coverage(
         input_setB, num2words.num2words)
-    cumulative_coverageC = calculate_cumulative_coverage(
+    cumulative_coverageC = calculate_cumulative_coverage_with_lambda(
         input_setC, num2words.num2words)
     plt.plot(cumulative_coverageA, label ="RandomFuzzer")
     plt.plot(cumulative_coverageB,label = "MutationFuzzer")

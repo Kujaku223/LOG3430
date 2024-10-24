@@ -37,4 +37,4 @@ class MyFuzzer:
         if string[-1] in [",", "."]:
             string = string[:-1]
 
-        return string
+        return (string,"en")
