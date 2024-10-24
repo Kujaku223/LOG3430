@@ -2,8 +2,6 @@ import sys
 import os
 import random
 import num2words
-
-import url_parser
 import matplotlib.pyplot as plt
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../Partie-A')))
@@ -11,7 +9,6 @@ from random_fuzzer import RandomFuzzer
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../Partie-B')))
 from mutation_fuzzer import MutationFuzzer
 from my_fuzzer import MyFuzzer
-
 
 class Coverage:
     def __init__(self):
@@ -34,7 +31,6 @@ class Coverage:
     def coverage(self):
         return self.covered_lines
 
-
 def calculate_cumulative_coverage(input_population, function):
     cumulative_coverage = []
     all_coverage = set()
@@ -50,6 +46,7 @@ def calculate_cumulative_coverage(input_population, function):
         all_coverage |= coverage.coverage()
         cumulative_coverage.append(len(all_coverage))
     return cumulative_coverage
+
 def calculate_cumulative_coverage_with_lambda(input_population, function):
     cumulative_coverage = []
     all_coverage = set()
@@ -66,12 +63,10 @@ def calculate_cumulative_coverage_with_lambda(input_population, function):
         cumulative_coverage.append(len(all_coverage))
     return cumulative_coverage
 
-
-
 if __name__ == '__main__':
     # Exemple de couverture avec MutationFuzzer à modifier pour les tâches de la Partie-C
     random.seed(2195379)
-    trials = 1000
+    trials = 200
     fuzzerA = RandomFuzzer()
     fuzzerB = MutationFuzzer(seeds=["3452020"])
     fuzzerC = MyFuzzer()
@@ -82,12 +77,14 @@ if __name__ == '__main__':
     print(input_setA)
     print(input_setB)
     print(input_setC)
+
     cumulative_coverageA = calculate_cumulative_coverage(
         input_setA, num2words.num2words)
     cumulative_coverageB = calculate_cumulative_coverage(
         input_setB, num2words.num2words)
     cumulative_coverageC = calculate_cumulative_coverage_with_lambda(
         input_setC, num2words.num2words)
+
     plt.plot(cumulative_coverageA, label ="RandomFuzzer")
     plt.plot(cumulative_coverageB,label = "MutationFuzzer")
     plt.plot(cumulative_coverageC,label = "MyFuzzer")
